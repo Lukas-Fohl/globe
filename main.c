@@ -27,8 +27,6 @@ int read_into_file(){
     int y = 0;
     do {
         ch = fgetc(ptr);
-        printf("%c",ch);
-
         map[x][y] = (ch != '\n')?ch:' ';
         if(ch == '\n'){
             x = -1;
@@ -77,7 +75,7 @@ int main(){
         //    char temp = map[(int)xam*MAP_MAX_X][(int)(((double)i/(double)yHeight)*MAP_MAX_Y)];
         //    mvprintw((int)(i+(row/2)),xCoord,&temp);
         //}
-        for(int i = (int)MAP_MAX_Y/2; i > 0; i--){
+        //for(int i = (int)MAP_MAX_Y/2; i > 0; i--){
         for(int i = 0; i < (int)MAP_MAX_Y/2; i++){
             double iam = i/((double)MAP_MAX_Y/(double)2);
             char temp = (yHeight > (double)0)?
