@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.py": "python",
+        "ncurses.h": "c",
+        "curses.h": "c"
+    }
+}
