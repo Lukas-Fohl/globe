@@ -17,7 +17,6 @@ int read_into_file(){
     FILE* ptr;
     char ch;
  
-    // Opening file in reading mode
     ptr = fopen("src.txt", "r");
  
     if (NULL == ptr) {
@@ -74,23 +73,19 @@ int main(){
         int Xamount = (int)(xam*MAP_MAX_X);
 
         double yHeight = yshape - (RADIUS * cos(90*PI/180));//height -10..10 (-10 --> above 0 && 10 --> below 0)
-        for(double i = 0; (yHeight>0)? i < yHeight: i > yHeight; (yHeight>0)?i++:i--){
-            //x = xcoord
-            //y = yheight*(i/yheight) + (row/2)
-            //mapx = (xam*Xmax)
-            //mapy = (i/yheight)*maxY
-            char temp = map[(int)xam*MAP_MAX_X][(int)(((double)i/(double)yHeight)*MAP_MAX_Y)];
-            mvprintw((int)(i+(row/2)),xCoord,&temp);
-        }
-        //for(int i = (int)MAP_MAX_Y/2; i > 0; i--){
-        //for(int i = 0; i < (int)MAP_MAX_Y/2; i++){
-        //    double iam = i/((double)MAP_MAX_Y/(double)2);
-        //    char temp = (yHeight > (double)0)?
-        //        map[Xamount][(MAP_MAX_Y/2)+(int)(iam*(MAP_MAX_Y/2))]
-        //        :
-        //        map[Xamount][(int)(iam*(MAP_MAX_Y/2))*2];
-        //    mvprintw((yHeight)*iam+(row/2),xCoord,&temp);
+        //for(double i = 0; (yHeight>0)? i < yHeight: i > yHeight; (yHeight>0)?i++:i--){
+        //    char temp = map[(int)xam*MAP_MAX_X][(int)(((double)i/(double)yHeight)*MAP_MAX_Y)];
+        //    mvprintw((int)(i+(row/2)),xCoord,&temp);
         //}
+        for(int i = (int)MAP_MAX_Y/2; i > 0; i--){
+        for(int i = 0; i < (int)MAP_MAX_Y/2; i++){
+            double iam = i/((double)MAP_MAX_Y/(double)2);
+            char temp = (yHeight > (double)0)?
+                map[Xamount][(MAP_MAX_Y/2)+(int)(iam*(MAP_MAX_Y/2))]
+                :
+                map[Xamount][(int)(iam*(MAP_MAX_Y/2))*2];
+            mvprintw((yHeight)*iam+(row/2),xCoord,&temp);
+        }
     }
 	refresh();
 	getch();
