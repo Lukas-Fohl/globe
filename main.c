@@ -63,19 +63,28 @@ int main(){
         double angle = i*PI/180;
         double xshape = RADIUS * sin(angle);
         double yshape = RADIUS * cos(angle);
-        yshape = yshape/2; //weil rund
+        yshape = (yshape/2);
         double yCoord = row/2 + yshape;
         double xCoord = col/2 + xshape;
-        //mvprintw(yCoord,xCoord,"?");
         double xam = angle/(360*PI/180);
         int Xamount = (int)(xam*MAP_MAX_X);
 
-        double yHeight = yshape - (RADIUS * cos(90*PI/180));//height -10..10 (-10 --> above 0 && 10 --> below 0)
-        //for(double i = 0; (yHeight>0)? i < yHeight: i > yHeight; (yHeight>0)?i++:i--){
-        //    char temp = map[(int)xam*MAP_MAX_X][(int)(((double)i/(double)yHeight)*MAP_MAX_Y)];
-        //    mvprintw((int)(i+(row/2)),xCoord,&temp);
-        //}
-        //for(int i = (int)MAP_MAX_Y/2; i > 0; i--){
+        double yHeight = yshape - (RADIUS * cos(90*PI/180));
+
+        for(double i = 0; i < abs(yHeight); i++)
+        {
+            double fac = yHeight/MAP_MAX_Y;
+            int i_ = (yHeight > 0)? 1: -1;
+            char temp = map[(int)xam*MAP_MAX_X][(MAP_MAX_Y/2)+(int)((double)i*(double)i_*(double)fac)];
+            //mvprintw((int)(i+(row/2)),xCoord,&temp);
+        }
+
+        for(double i = 0; (yHeight>0)? i < yHeight: i > yHeight; (yHeight>0)?i++:i--){
+            char temp = map[(int)xam*MAP_MAX_X][(int)(((double)i/(double)yHeight)*MAP_MAX_Y)];
+            //mvprintw((int)(i+(row/2)),xCoord,&temp);
+        }
+
+        ////for(int i = (int)MAP_MAX_Y/2; i > 0; i--){
         for(int i = 0; i < (int)MAP_MAX_Y/2; i++){
             double iam = i/((double)MAP_MAX_Y/(double)2);
             char temp = (yHeight > (double)0)?
